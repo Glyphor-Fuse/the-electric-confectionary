@@ -1,25 +1,32 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+
+import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route as RRDRoute } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { SiteHeader } from "@/components/SiteHeader";
+import { HeroSection } from "@/components/HeroSection";
+import { PickAndMixGrid } from "@/components/PickAndMixGrid";
+import { HeritageStory } from "@/components/HeritageStory";
+import { NeonLocation } from "@/components/NeonLocation";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <Routes>
-        <RRDRoute path="/" element={<Index />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <RRDRoute path="*" element={<NotFound />} />
-      </Routes>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <main className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white">
+          <SiteHeader />
+          <HeroSection />
+          <PickAndMixGrid />
+          <HeritageStory />
+          <NeonLocation />
+          <SiteFooter />
+        </main>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
